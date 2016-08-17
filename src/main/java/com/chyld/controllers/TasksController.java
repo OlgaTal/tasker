@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @RequestMapping({"/tasks"})
 public class TasksController {
     private TaskRepository repo;
