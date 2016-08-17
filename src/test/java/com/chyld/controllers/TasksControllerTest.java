@@ -36,18 +36,18 @@ public class TasksControllerTest {
     // GET /api/tasks
     public void shouldGetAllTheTasks() throws Exception {
         get("/api/tasks")
-                .then()
-                .statusCode(200)
-                .body("numberOfElements", is(3));
+            .then()
+            .statusCode(200)
+            .body("numberOfElements", is(3));
     }
 
     @Test
     // GET /api/tasks/:id
     public void shouldGetASingleTask() throws Exception {
         get("/api/tasks/1")
-                .then()
-                .statusCode(200)
-                .body("name", is("Get Milk"));
+            .then()
+            .statusCode(200)
+            .body("name", is("Get Milk"));
     }
 
     @Test
@@ -72,9 +72,9 @@ public class TasksControllerTest {
     // DELETE /api/tasks/:id
     public void shouldDeleteATask() throws Exception {
         when().
-                delete("/api/tasks/1")
-                .then()
-                .statusCode(200);
+            delete("/api/tasks/1")
+        .then()
+            .statusCode(200);
     }
 
     @Test
