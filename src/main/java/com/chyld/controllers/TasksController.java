@@ -4,10 +4,7 @@ import com.chyld.models.Task;
 import com.chyld.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping({"/tasks"})
@@ -29,5 +26,22 @@ public class TasksController {
     public Task show(@PathVariable int id){
         Task t = repo.findOne(id);
         return t;
+    }
+
+    @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
+    public Task create(@RequestBody Task task){
+        return repo.save(task);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id){
+        repo.delete(id);
+    }
+
+    @RequestMapping(path = "/{id}/complete", method = RequestMethod.PATCH)
+    public Task complete(@PathVariable int id){
+        Task t = repo.findOne(id);
+        t.setIsComplete(!t.getIsComplete());
+        return repo.save(t);
     }
 }

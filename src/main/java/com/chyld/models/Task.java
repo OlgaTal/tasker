@@ -15,6 +15,7 @@ public class Task {
     private Date updatedAt;
 
     public Task() {
+        this.isComplete = false;
         this.createdAt = new Date();
         this.updatedAt = new Date();
     }
