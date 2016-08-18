@@ -18,15 +18,14 @@ public class TasksController {
     }
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.GET)
-    public Iterable<Task> index(){
-        PageRequest pr = new PageRequest(0, 3);
+    public Iterable<Task> index(@RequestParam(name = "page", required = false, defaultValue = "0") int page){
+        PageRequest pr = new PageRequest(page, 3);
         return repo.findAll(pr);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Task show(@PathVariable int id){
-        Task t = repo.findOne(id);
-        return t;
+        return repo.findOne(id);
     }
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
